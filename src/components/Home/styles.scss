@@ -1,0 +1,28 @@
+
+
+.cards-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    margin:10px;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    min-width: 200px;
+     &-image{
+         width: 100%;
+     }
+     &-infos{
+         padding: 15px;
+     }
+     &-title{
+         font-size: 1.4em;
+         font-weight:bold;
+     }
+
+     &-difficulty{
+         margin:5px 0;
+     }
+}

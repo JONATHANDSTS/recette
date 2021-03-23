@@ -1,0 +1,15 @@
+.navigation {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: #fbfbfb;
+    padding: 20px;
+    &-link{
+        margin: 5px 0;
+    }
+}
+
+.active {
+    color: #ea981e;
+
+}
