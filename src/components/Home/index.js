@@ -31,7 +31,7 @@ const Home = ({ list }) => (
 
 Home.propTypes = {
   list: PropTypes.arrayOf(shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,

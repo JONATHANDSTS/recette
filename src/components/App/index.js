@@ -6,17 +6,13 @@ import slugify from 'slugify';
 // == Import
 import Recipe from 'src/components/Recipe';
 import Home from 'src/components/Home';
-import Navigation from 'src/components/Navigation';
+import Navigation from 'src/containers/Navigation';
 import data from '../../data';
 import './styles.css';
 
 const slugifyTitle = (titre) => `/recipe/${slugify(titre, { lower: true })}`;
 
-const navList = data.map((dataObject) => ({
-  id: dataObject.id,
-  title: dataObject.title,
-  slug: slugifyTitle(dataObject.title),
-}));
+
 
 const homeData = data.map((dataObject) => ({
   id: dataObject.id,
@@ -29,7 +25,7 @@ const homeData = data.map((dataObject) => ({
 // == Composant
 const App = () => (
   <div className="app">
-    <Navigation list={navList} />
+    <Navigation />
     <main className="main">
       <header className="header">recipe</header>
       <Route exact path="/">
