@@ -30,4 +30,19 @@ export const getNavFromRecipes = (recipes) => recipes.map((dataObject) => ({
   slug: slugifyTitle(dataObject.title),
 }));
 
+// const homeData = data.map((dataObject) => ({
+//   id: dataObject.id,
+//   title: dataObject.title,
+//   slug: slugifyTitle(dataObject.title),
+//   image: dataObject.thumbnail,
+//   difficulty: dataObject.difficulty,
+// }));
+export const GetHomeData = (recipes) => recipes.map((dataObject) => ({
+  id: dataObject.id,
+  title: dataObject.title,
+  slug: slugifyTitle(dataObject.title),
+  image: dataObject.thumbnail,
+  difficulty: dataObject.difficulty,
+}));
+
 export default reducer;
