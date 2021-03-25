@@ -10,16 +10,18 @@ import Navigation from 'src/components/Navigation';
 import data from '../../data';
 import './styles.css';
 
+const slugifyTitle = (titre) => `/recipe/${slugify(titre, { lower: true })}`;
+
 const navList = data.map((dataObject) => ({
   id: dataObject.id,
   title: dataObject.title,
-  slug: `/recipe/${slugify(dataObject.title, { lower: true })}`,
+  slug: slugifyTitle(dataObject.title),
 }));
 
 const homeData = data.map((dataObject) => ({
   id: dataObject.id,
   title: dataObject.title,
-  slug: `/recipe/${slugify(dataObject.title, { lower: true })}`,
+  slug: slugifyTitle(dataObject.title),
   image: dataObject.thumbnail,
   difficulty: dataObject.difficulty,
 }));
@@ -33,9 +35,27 @@ const App = () => (
       <Route exact path="/">
         <Home list={homeData} />
       </Route>
-      <Route path="/recipe/:slug">
+      {/* <Route path="/recipe/:slug">
         <Recipe recipe={data[0]} />
-      </Route>
+      </Route> */}
+      <Route
+        path="/recipe/:slug"
+        render={(routerObject) => {
+          // dans un truc il ya tout les parametre durl
+          // console.log(routerObject.match.params);
+          const { slug } = routerObject.match.params;
+          // je peux chercher dans ma liste
+          // des recttes qui correspond au slug
+          const foundRecipe = data.find((recipeObject) => {
+            const recipeUrl = slugifyTitle(recipeObject.title);
+            const slugUrl = `/recipe/${slug}`;
+            return recipeUrl === slugUrl;
+          });
+
+          // je donne lobjet trouve au composant
+          return <Recipe recipe={foundRecipe} />;
+        }}
+      />
     </main>
   </div>
 );

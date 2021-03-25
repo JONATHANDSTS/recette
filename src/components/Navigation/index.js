@@ -10,7 +10,7 @@ const Navigation = ({ list }) => (
       list.map((navObject) => (
         <NavLink
           className="navigation-link"
-          key={navObject.i}
+          key={navObject.id}
           to={navObject.slug}
         >
           {navObject.title}
