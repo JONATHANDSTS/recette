@@ -1,19 +1,20 @@
 import React from 'react';
+import { NavLink} from 'react-router-dom';
 import './styles.scss';
 import PropTypes from 'prop-types';
 
 const Navigation = ({ list }) => (
   <div className="navigation">
-    <a className="navigation-link active" href="/">Accueil</a>
+    <NavLink exact className="navigation-link" to="/">Accueil</NavLink>
     {
       list.map((navObject) => (
-        <a
+        <NavLink
           className="navigation-link"
           key={navObject.i}
-          href={navObject.slug}
+          to={navObject.slug}
         >
           {navObject.title}
-        </a>
+        </NavLink>
       ))
     }
   </div>

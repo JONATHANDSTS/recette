@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 import PropTypes, { shape } from 'prop-types';
 
@@ -17,7 +18,7 @@ const Home = ({ list }) => (
             <div className="card-infos">
               <h3 className="card-title">{cardObject.title}</h3>
               <p className="card-difficulty">difficulte: {cardObject.difficulty}</p>
-              <a href={cardObject.slug} className="active">lien vers la recette</a>
+              <Link to={cardObject.slug} className="active">lien vers la recette</Link>
             </div>
 
           </div>

@@ -1,5 +1,6 @@
 // == Import npm
 import React from 'react';
+import { Route } from 'react-router-dom';
 import slugify from 'slugify';
 
 // == Import
@@ -15,7 +16,7 @@ const navList = data.map((dataObject) => ({
   slug: `/recipe/${slugify(dataObject.title, { lower: true })}`,
 }));
 
-const homeData = data.map((dataObject)=>({
+const homeData = data.map((dataObject) => ({
   id: dataObject.id,
   title: dataObject.title,
   slug: `/recipe/${slugify(dataObject.title, { lower: true })}`,
@@ -29,8 +30,12 @@ const App = () => (
     <Navigation list={navList} />
     <main className="main">
       <header className="header">recipe</header>
-      <Home list={homeData} />
-      <Recipe recipe={data[0]} />
+      <Route exact path="/">
+        <Home list={homeData} />
+      </Route>
+      <Route path="/recipe/:slug">
+        <Recipe recipe={data[0]} />
+      </Route>
     </main>
   </div>
 );
