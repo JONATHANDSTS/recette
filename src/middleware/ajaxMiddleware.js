@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { fetchRecipesSucces, FETCH_RECIPES } from '../actions/recipes';
+import { fetchRecipesError, fetchRecipesSucces, FETCH_RECIPES } from '../actions/recipes';
 
 export default (store) => (next) => (action) => {
   next(action);
@@ -23,6 +23,7 @@ export default (store) => (next) => (action) => {
         .catch((err) => {
           // sinon dispatch lerreur
           console.log(err);
+          dispatch(fetchRecipesError());
         });
 
       break;

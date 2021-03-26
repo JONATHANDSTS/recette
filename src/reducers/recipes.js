@@ -1,8 +1,9 @@
 import slugify from 'slugify';
-import { FETCH_RECIPES_SUCCES } from '../actions/recipes';
+import { FETCH_RECIPES_SUCCES, FETCH_RECIPES_ERROR } from '../actions/recipes';
 
 const initialState = {
   list: [],
+  error: null,
 
 };
 
@@ -12,6 +13,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: [...action.payload],
+        error: null,
+      };
+    case FETCH_RECIPES_ERROR:
+      return {
+        ...state,
+        error: 'impossible de recuperer les recettes, verifiez votre connexion',
       };
     default:
       return state;
