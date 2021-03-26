@@ -45,4 +45,7 @@ export const GetHomeData = (recipes) => recipes.map((dataObject) => ({
   difficulty: dataObject.difficulty,
 }));
 
+export const findRecipeFromSlug = (recipes, url) => (
+// trouver le bon oblet et le renvoyer
+  recipes.find((recipeObject) => slugifyTitle(recipeObject.title) === url));
 export default reducer;
