@@ -7,6 +7,7 @@ const mapSate = (state) => ({
   password: state.user.password,
   isLogged: state.user.isLogged,
   loggedMessage: state.user.loggedMessage,
+  loading: state.user.loading,
 
 });
 
@@ -19,6 +20,7 @@ const mapDispatch = (dispatch) => ({
     // console.log('changefield', object);
   },
   handleLogin: () => {
+    dispatch(loginInputSubmit());
     console.log('login');
   },
   handleLogout: () => {

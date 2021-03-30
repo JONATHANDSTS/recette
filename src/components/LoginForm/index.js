@@ -14,11 +14,20 @@ const LoginForm = ({
   handleLogout,
   isLogged,
   loggedMessage,
+  loading,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
   };
+
+  if (loading) {
+    return (
+      <div className="login-form">
+        connexion en cours...
+      </div>
+    );
+  }
 
   return (
     <div className="login-form">
@@ -71,6 +80,7 @@ LoginForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,
   handleLogout: PropTypes.func.isRequired,
   isLogged: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
   loggedMessage: PropTypes.string,
 };
 

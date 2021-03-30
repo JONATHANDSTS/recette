@@ -1,10 +1,14 @@
-import { LOGIN_INPUT_CHANGE, LOGIN_INPUT_SUBMIT, LOGIN_INPUT_LOGOUT} from '../actions/user';
+import {
+  LOGIN_INPUT_CHANGE, LOGIN_INPUT_SUBMIT, LOGIN_INPUT_LOGOUT, LOGIN_SUCCES, LOGIN_ERROR,
+} from '../actions/user';
 
 const initialState = {
-  email: 'test@gmail',
-  password: '1234',
+  email: 'acidman@herocorp.io',
+  password: 'fructis',
   isLogged: false,
   loggedMessage: 'bienvenue lili',
+  loading: false,
+  pseudo:'',
 
 };
 
@@ -14,6 +18,29 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         ...action.payload,
+      };
+
+    case LOGIN_INPUT_SUBMIT:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case LOGIN_SUCCES:
+      return {
+        ...state,
+        loading: false,
+        isLogged: true,
+        pseudo: action.payload.pseudo,
+        loggedMessage: `Bienvenue ${action.payload.pseudo}`,
+      };
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        loading: false,
+        isLogged: false,
+        pseudo: '',
+        loggedMessage: '',
       };
     default:
       return state;
