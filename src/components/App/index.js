@@ -7,7 +7,7 @@ import Recipe from 'src/containers/Recipes';
 import Home from 'src/containers/Home';
 import Navigation from 'src/containers/Navigation';
 import Error from 'src/containers/Error';
-import LoginForm from 'src/components/LoginForm';
+import LoginForm from 'src/containers/LoginForm';
 // import data from '../../data';
 import './styles.css';
 
@@ -19,21 +19,7 @@ const App = ({ fetchRecipe }) => {
       <Navigation />
       <main className="main">
         <header className="header">recipe
-          <LoginForm
-            email="email@tets.fr"
-            password="qwerty"
-            isLogged={false}
-            loggedMessage="bienvenue lulu"
-            changeField={(value, name) => {
-              console.log('changefield', value, name);
-            }}
-            handleLogin={() => {
-              console.log('login');
-            }}
-            handleLogout={() => {
-              console.log('logout');
-            }}
-          />
+          <LoginForm />
         </header>
         <Error />
         <Route exact path="/">
