@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import LoginForm from '../components/LoginForm';
+import { loginInputChange, loginInputLogout, loginInputSubmit } from '../actions/user';
 
 const mapSate = (state) => ({
   email: state.user.email,
@@ -9,9 +10,13 @@ const mapSate = (state) => ({
 
 });
 
-const mapDispatch = (action) => ({
+const mapDispatch = (dispatch) => ({
   changeField: (value, name) => {
-    console.log('changefield', value, name);
+    const object = {
+      [name]: value,
+    };
+    dispatch(loginInputChange(object));
+    // console.log('changefield', object);
   },
   handleLogin: () => {
     console.log('login');
