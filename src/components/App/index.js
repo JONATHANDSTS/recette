@@ -12,8 +12,16 @@ import LoginForm from 'src/containers/LoginForm';
 import './styles.css';
 
 // == Composant
-const App = ({ fetchRecipe }) => {
-  useEffect(fetchRecipe, []);
+const App = ({ fetchRecipe, checkAuth }) => {
+  // useEffect(fetchRecipe, []);
+  // useEffect(checkAuth, []);
+  // 2eme facon
+
+  useEffect(() => {
+    checkAuth();
+    fetchRecipe();
+  }, []);
+
   return (
     <div className="app">
       <Navigation />

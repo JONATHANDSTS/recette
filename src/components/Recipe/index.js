@@ -13,6 +13,9 @@ import './styles.css';
 
 // == Composant
 function Recipe({ recipe }) {
+  if (!recipe || !recipe.title) {
+    return <div>recuperation de la ressource</div>;
+  }
   return (
     <div className="recipe">
       <Header

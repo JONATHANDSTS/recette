@@ -1,5 +1,12 @@
 import {
-  LOGIN_INPUT_CHANGE, LOGIN_INPUT_SUBMIT, LOGIN_INPUT_LOGOUT, LOGIN_SUCCES, LOGIN_ERROR,
+  LOGIN_INPUT_CHANGE,
+  LOGIN_INPUT_SUBMIT,
+  LOGIN_INPUT_LOGOUT,
+  LOGIN_SUCCES,
+  LOGIN_ERROR,
+  CHECK_AUTH,
+  LOGOUT_SUCCES,
+  LOGOUT_ERROR,
 } from '../actions/user';
 
 const initialState = {
@@ -8,12 +15,25 @@ const initialState = {
   isLogged: false,
   loggedMessage: 'bienvenue lili',
   loading: false,
-  pseudo:'',
+  pseudo: '',
 
 };
 
 const user = (state = initialState, action = {}) => {
   switch (action.type) {
+    case LOGOUT_SUCCES:
+      return {
+        ...state,
+        isLogged: false,
+        pseudo: '',
+        loggedMessage: '',
+      };
+    case LOGOUT_ERROR:
+      return {
+        ...state,
+        loading: false,
+
+      };
     case LOGIN_INPUT_CHANGE:
       return {
         ...state,

@@ -24,7 +24,8 @@ const mapDispatch = (dispatch) => ({
     console.log('login');
   },
   handleLogout: () => {
-    console.log('logout');
+    dispatch(loginInputLogout());
+    // console.log('logout');
   },
 });
 

@@ -3,7 +3,7 @@ import Recipe from '../components/Recipe';
 import { findRecipeFromSlug } from '../reducers/recipes';
 
 const mapSate = (state, ownProps) => ({
-  recipe: findRecipeFromSlug(state.recipes.list, ownProps.match.url),
+  recipe: findRecipeFromSlug(state.recipes.list, ownProps.match.url) || {},
 });
 
 const mapDispatch = null;

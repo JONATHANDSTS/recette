@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 import { fetchRecipesError, fetchRecipesSucces, FETCH_RECIPES } from '../actions/recipes';
-import { LOGIN_INPUT_SUBMIT, loginSucces, loginError } from '../actions/user';
+import {
+  LOGIN_INPUT_SUBMIT, loginSucces, loginError, LOGIN_INPUT_LOGOUT, CHECK_AUTH, LOGOUT_SUCCES, logoutSucces, logoutError,
+} from '../actions/user';
 
 export default (store) => (next) => (action) => {
   next(action);
@@ -31,6 +33,7 @@ export default (store) => (next) => (action) => {
       axios({
         method: 'post',
         url: 'http://localhost:3001/login',
+        withCredentials: true, // pour que le serveur sache quel client je suis
         data: {
           // puisque on est dans middleware on a acces au store
           // on peut faire donc store.getState contient le state= object qui contient tout le state
@@ -48,7 +51,40 @@ export default (store) => (next) => (action) => {
           console.error(err);
         });
       break;
+    case CHECK_AUTH:
+      axios({
+        method: 'post',
+        url: 'http://localhost:3001/isLogged',
+        withCredentials: true,
+      })
+        .then((res) => {
+          const { data } = res;
+          // si je suis connecete
+          if (data.logged) {
+            dispatch(loginSucces(data));
+          }
+          // sinon rien
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      break;
 
+    case LOGIN_INPUT_LOGOUT:
+      axios({
+        method: 'post',
+        url: 'http://localhost:3001/logout',
+        withCredentials: true,
+      })
+        .then((res) => {
+          dispatch(logoutSucces());
+          console.log(res.data);
+        })
+        .catch((err) => {
+          dispatch(logoutError());
+          console.error(err);
+        });
+      break;
     default:
       break;
   }
